@@ -97,7 +97,7 @@ class myFrame :public wxFrame
 				break;
 				
 			case wxID_ABOUT:
-				 wxMessageBox( wxT("This is a pervasive data science demonstration tool written by <martin.werner@ifi.lmu.de> to showcase research results."), wxT("About"), wxOK | wxICON_INFORMATION );
+				 wxMessageBox( wxT("This is a pervasive data science demonstration tool written by <martin.werner@ifi.lmu.de> to showcase research results.\n\Find and download it at https://github.com/mwernerds/dslab"), wxT("About"), wxOK | wxICON_INFORMATION );
 				break;
 			default:
 				try{
@@ -140,7 +140,7 @@ bool MyApp::OnInit()
 #if defined(__WXMSW__)
 	//RedirectIOToConsole();
 #endif
-	 //wxMessageBox( wxT("This is a pervasive data science demonstration tool written by <martin.werner@ifi.lmu.de> to showcase research results."), wxT("About"), wxOK | wxICON_INFORMATION );
+	 //wxMessageBox( wxT("This is a pervasive data science demonstration tool written by <martin.werner@ifi.lmu.de> to showcase research results.\n\n (https://github.com/mwernerds/dslab), wxT("About"), wxOK | wxICON_INFORMATION );
  		
     wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
     wxString s(getDataEngineImplementation()->getTitle().c_str(),wxConvUTF8);
