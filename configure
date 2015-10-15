@@ -2588,7 +2588,7 @@ if test "$wxWin" != 1; then
 		" "$LINENO" 5
 fi
 
-Custom OpenGL linker flags
+#Custom OpenGL linker flags
 
 # Check whether --with-opengl-libs was given.
 if test "${with_opengl_libs+set}" = set; then :

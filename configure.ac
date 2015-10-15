@@ -16,7 +16,7 @@ if test "$wxWin" != 1; then
 		])
 fi
 
-Custom OpenGL linker flags
+#Custom OpenGL linker flags
  AC_ARG_WITH([opengl-libs], AS_HELP_STRING([--with-opengl-libs=linker flags],
  [OpenGL linker flags (-lGL -lGLU for some linux, some -framework OpenGL stuff for Mac]),
  [GL_LIBS="$withval"], [GL_LIBS='-lGL -lGLU'])
