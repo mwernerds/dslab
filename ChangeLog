@@ -1,0 +1,12 @@
+2015-07-24 Martin Werner <martin.werner@ifi.lmu.de>
+
+* Patched configure.ac to work on Ubuntu, which somehow needs -lGL (--with-opengl-libs= flag for configure)
+
+2015-07-09  Martin Werner  <martin.werner@ifi.lmu.de>
+
+* Adding toolbar support and especially a zoom toolbar for dsOrthoZoomPan including gfx
+* Finisihing to version 2
+* Adding complete library
+* class orthozoompan is able to zoom pan and project. See example-ortho.cpp
+* Windows builds with --enable-windows in order to search for WinMain implementation in library
+* sort.el (sort-subr): Return nil.
