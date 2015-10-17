@@ -1,7 +1,8 @@
 # dslab
-Data Science Lab
-# dslab 1.0
-DSLAB is a cross-platform library built using wx-widgets and C++ in order to facilitate easy and fast visual data science applications in C++.
+DSLAB is a cross-platform environment for portable and fast computer science applications in C++.
+
+DSLAB provides an interface (the class DataEngine) from which you subclass to get your functionality. DSLAB is based on a simple interface allowing for cross-platform, OpenGL-ready, animatable and fast applications to showcase your research.
+
 #Features
 * Cross-Platform GUI (including menu bars, dialog boxes, controls, file open and close, and more)
 * Linux and Windows from the same source code
