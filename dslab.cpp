@@ -97,7 +97,7 @@ class myFrame :public wxFrame
 				break;
 				
 			case wxID_ABOUT:
-				 wxMessageBox( wxT("This is a pervasive data science demonstration tool written by <martin.werner@ifi.lmu.de> to showcase research results.\n\Find and download it at https://github.com/mwernerds/dslab"), wxT("About"), wxOK | wxICON_INFORMATION );
+				 wxMessageBox( wxT("This is a pervasive data science demonstration tool written by <martin.werner@ifi.lmu.de> to showcase research results.\n\nFind and download it at https://github.com/mwernerds/dslab"), wxT("About"), wxOK | wxICON_INFORMATION );
 				break;
 			default:
 				try{
@@ -137,8 +137,8 @@ bool MyApp::OnInit()
 	// first register the foreign class
 	registerDataEngine(getDataEngineImplementation());
 
-#if defined(__WXMSW__)
-	//RedirectIOToConsole();
+#if defined(DSLAB_USE_WINDOWS_CONSOLE)
+	RedirectIOToConsole();
 #endif
 	 //wxMessageBox( wxT("This is a pervasive data science demonstration tool written by <martin.werner@ifi.lmu.de> to showcase research results.\n\n (https://github.com/mwernerds/dslab), wxT("About"), wxOK | wxICON_INFORMATION );
  		
@@ -151,7 +151,7 @@ bool MyApp::OnInit()
     glPane = new BasicGLPane( (wxFrame*) frame, args);
     sizer->Add(glPane, 5, wxEXPAND);
     
-    textBox = new wxTextCtrl( (wxFrame*) frame, TEXT_ID, _(""), wxDefaultPosition, wxDefaultSize,  wxTE_MULTILINE | wxTE_READONLY , wxDefaultValidator, wxTextCtrlNameStr);
+    textBox = new wxTextCtrl( (wxFrame*) frame, TEXT_ID, _(""), wxDefaultPosition, wxDefaultSize,  wxTE_MULTILINE | wxTE_READONLY | wxTE_RICH2 , wxDefaultValidator, wxTextCtrlNameStr);
     
     sizer->Add(textBox,1, wxEXPAND);
     
@@ -203,7 +203,8 @@ bool MyApp::OnInit()
     frame->Show();
     
     bool console = false;
-    
+    if (!console) 
+		redirect = new wxStreamToTextRedirector(textBox);
     
    /* if (wxGetApp().argc >1)
       if(wxStrcmp(wxGetApp().argv[1],wxT("--console")) != 0)

@@ -69,6 +69,43 @@ using namespace std;
 		this->y = y;
 	}
 
+	double animate_source_zoomlevel;
+	double animate_source_x;
+	double animate_source_y;
+	double animate_target_zoomlevel;
+	double animate_target_x;
+	double animate_target_y;
+	double animate_time_remaining;
+	double animate_duration;
+	
+	void animate(double iElapsed)
+	{
+		// progress animation if active
+		if (animate_time_remaining > 0)
+		{
+			animate_time_remaining -= iElapsed;
+			if (animate_time_remaining < 0) 
+				animate_time_remaining = 0;
+			double tau = animate_time_remaining / animate_duration; 
+			x = tau * animate_source_x + (1-tau) * animate_target_x;
+			y = tau * animate_source_y + (1-tau) * animate_target_y;
+			zoomlevel = tau * animate_source_zoomlevel + (1-tau) * animate_target_zoomlevel;
+		}
+	}
+	
+
+	void zoomFitAnimated(double duration=500)
+	{
+		animate_source_zoomlevel = zoomlevel;
+		animate_source_x = x;
+		animate_source_y = y;
+		animate_target_zoomlevel = 0;
+		animate_target_x = (mbr[1]+mbr[0]) / 2;
+		animate_target_y = (mbr[3]+mbr[2]) / 2;
+		animate_time_remaining = duration;
+		animate_duration = duration; // default 1/2 second
+	}
+
 	void zoomFit()
 	{
 		zoomlevel = 0;

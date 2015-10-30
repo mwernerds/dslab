@@ -51,7 +51,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = example$(EXEEXT) ortho$(EXEEXT)
+bin_PROGRAMS = example$(EXEEXT) ortho$(EXEEXT) \
+	example-zoompan-animate$(EXEEXT)
 subdir = .
 DIST_COMMON = $(am__configure_deps) $(include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
@@ -108,6 +109,11 @@ PROGRAMS = $(bin_PROGRAMS)
 am_example_OBJECTS = example.$(OBJEXT)
 example_OBJECTS = $(am_example_OBJECTS)
 example_DEPENDENCIES = libdslab.a
+am_example_zoompan_animate_OBJECTS =  \
+	example-zoompan-animate.$(OBJEXT)
+example_zoompan_animate_OBJECTS =  \
+	$(am_example_zoompan_animate_OBJECTS)
+example_zoompan_animate_DEPENDENCIES = libdslab.a
 am_ortho_OBJECTS = example-ortho.$(OBJEXT)
 ortho_OBJECTS = $(am_ortho_OBJECTS)
 ortho_DEPENDENCIES = libdslab.a
@@ -120,9 +126,10 @@ CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
-SOURCES = $(libdslab_a_SOURCES) $(example_SOURCES) $(ortho_SOURCES)
+SOURCES = $(libdslab_a_SOURCES) $(example_SOURCES) \
+	$(example_zoompan_animate_SOURCES) $(ortho_SOURCES)
 DIST_SOURCES = $(libdslab_a_SOURCES) $(example_SOURCES) \
-	$(ortho_SOURCES)
+	$(example_zoompan_animate_SOURCES) $(ortho_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -245,6 +252,8 @@ example_SOURCES = example.cpp
 example_LDADD = libdslab.a
 ortho_SOURCES = example-ortho.cpp
 ortho_LDADD = libdslab.a
+example_zoompan_animate_SOURCES = example-zoompan-animate.cpp
+example_zoompan_animate_LDADD = libdslab.a
 lib_LIBRARIES = libdslab.a
 libdslab_a_SOURCES = dslab.cpp guicon.cpp xpm_mdsg.cpp xpm_viewmag1.cpp  xpm_viewmagp.cpp  xpm_viewmagm.cpp
 include_HEADERS = dslab.h guicon.h
@@ -364,6 +373,9 @@ clean-binPROGRAMS:
 example$(EXEEXT): $(example_OBJECTS) $(example_DEPENDENCIES) $(EXTRA_example_DEPENDENCIES) 
 	@rm -f example$(EXEEXT)
 	$(CXXLINK) $(example_OBJECTS) $(example_LDADD) $(LIBS)
+example-zoompan-animate$(EXEEXT): $(example_zoompan_animate_OBJECTS) $(example_zoompan_animate_DEPENDENCIES) $(EXTRA_example_zoompan_animate_DEPENDENCIES) 
+	@rm -f example-zoompan-animate$(EXEEXT)
+	$(CXXLINK) $(example_zoompan_animate_OBJECTS) $(example_zoompan_animate_LDADD) $(LIBS)
 ortho$(EXEEXT): $(ortho_OBJECTS) $(ortho_DEPENDENCIES) $(EXTRA_ortho_DEPENDENCIES) 
 	@rm -f ortho$(EXEEXT)
 	$(CXXLINK) $(ortho_OBJECTS) $(ortho_LDADD) $(LIBS)
@@ -376,6 +388,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dslab.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/example-ortho.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/example-zoompan-animate.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/example.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/guicon.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xpm_mdsg.Po@am__quote@
