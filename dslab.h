@@ -208,6 +208,7 @@ class DataEngine
 		virtual void mouseWheel(size_t x, size_t y, int steps) {};
 		virtual void key(int keycode, bool ctrl, bool shift, bool alt){};
 		
+		
 };
 
  
@@ -240,6 +241,8 @@ public:
 	void keyPressed(wxKeyEvent& event);
 	void keyReleased(wxKeyEvent& event);
 		
+		
+	void writeScreenshot(std::string filename);
  
 	DECLARE_EVENT_TABLE()
 };
@@ -261,9 +264,11 @@ extern BasicGLPane *glPane;
 
 extern DataEngine *gEngine;
 
+void DS_stop_redirection();
 void DS_start_rendering();
 void DS_stop_rendering();
 void DS_render_once();
+void DS_screenshot(std::string filename);
 
 void registerDataEngine(DataEngine *pData);
 DataEngine *getDataEngineImplementation();

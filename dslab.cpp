@@ -33,7 +33,7 @@ public:
 
 	wxTextCtrl *textBox;
     
-    wxStreamToTextRedirector *redirect;
+    wxStreamToTextRedirector *redirect=NULL;
 	void activateRenderLoop(bool on)
 	{
 		if(on && !render_loop_on)
@@ -54,6 +54,15 @@ public:
 			return uint64_t( tv.tv_sec ) * 1000 + tv.tv_usec / 1000;
 		}
 
+	void activateRedirection(bool which)
+	{
+		if (!which)
+		{
+			if(redirect != NULL)
+				delete redirect;
+		    redirect = NULL;
+		}
+	}
 	
 	void onIdle(wxIdleEvent& evt)
 	{
@@ -146,7 +155,7 @@ bool MyApp::OnInit()
     wxString s(getDataEngineImplementation()->getTitle().c_str(),wxConvUTF8);
     frame = new myFrame(  s, wxPoint(50,50), wxSize(400,200));
  
-    int args[] = {WX_GL_RGBA, WX_GL_DOUBLEBUFFER, WX_GL_DEPTH_SIZE, 16, 0};
+    int args[] = {WX_GL_RGBA, WX_GL_DOUBLEBUFFER, WX_GL_DEPTH_SIZE, 16, WX_GL_STENCIL_SIZE, 8, 0};
  
     glPane = new BasicGLPane( (wxFrame*) frame, args);
     sizer->Add(glPane, 5, wxEXPAND);
@@ -381,6 +390,35 @@ void BasicGLPane::render( wxPaintEvent& evt )
 }
 
 
+void BasicGLPane::writeScreenshot(std::string filename)
+{
+	wxInitAllImageHandlers();  
+	
+	wxPaintEvent evt;
+	glDrawBuffer(GL_BACK);
+	render(evt);
+	glReadBuffer(GL_BACK);
+	GLvoid *imageData = malloc(getWidth()*getHeight()*3);		// 3 byte for RGB
+	if (imageData == NULL)
+	{
+		fprintf(stderr,"Memory allocation failed for screenshot\n");
+		return;
+    }
+    glReadPixels(0,0,getWidth(),getHeight(),GL_RGB,GL_UNSIGNED_BYTE,imageData);
+
+	wxImage img(getWidth(),getHeight(), true);
+	img.SetData((unsigned char *) imageData); // This should make wxWidgets responsible for the allocation
+	wxString wxFilename(filename.c_str(), wxConvUTF8);;
+	img.SaveFile(wxFilename,wxBITMAP_TYPE_PNG );
+}
+
+
+void DS_stop_redirection()
+{
+	wxGetApp().activateRedirection(false);
+}
+
+
 void DS_stop_rendering()
 {
 	wxGetApp().activateRenderLoop(false);
@@ -395,6 +433,11 @@ void DS_render_once()
 {
 	
 	getView()->Refresh();
+}
+
+void DS_screenshot(std::string filename)
+{
+	getView()->writeScreenshot(filename);
 }
 
 
