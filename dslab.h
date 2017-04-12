@@ -215,7 +215,7 @@ class DataEngine
 		virtual void mouseDragging(size_t from_x,size_t from_y, size_t to_x,size_t to_y){};
 		virtual void mouseMoved(size_t x,size_t y){};
 		virtual void mouseWheel(size_t x, size_t y, int steps) {};
-		virtual void key(int keycode, bool ctrl, bool shift, bool alt){};
+		virtual void key(int keycode, bool ctrl, bool shift, bool alt){};		virtual void key_up(int keycode, bool ctrl, bool shift, bool alt){};		    virtual void key_down(int keycode, bool ctrl, bool shift, bool alt){};
 		
 		
 };

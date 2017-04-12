@@ -234,7 +234,7 @@ EVT_LEFT_UP(BasicGLPane::mouseReleased)
 EVT_RIGHT_DOWN(BasicGLPane::rightClick)
 EVT_LEAVE_WINDOW(BasicGLPane::mouseLeftWindow)
 EVT_SIZE(BasicGLPane::resized)
-EVT_KEY_DOWN(BasicGLPane::keyPressed)
+EVT_CHAR_HOOK(BasicGLPane::keyPressed) // was keydown, now works
 EVT_KEY_UP(BasicGLPane::keyReleased)
 EVT_MOUSEWHEEL(BasicGLPane::mouseWheelMoved)
 EVT_PAINT(BasicGLPane::render)
@@ -282,6 +282,7 @@ void BasicGLPane::rightClick(wxMouseEvent& event) {
 }
 void BasicGLPane::mouseLeftWindow(wxMouseEvent& event) {}
 void BasicGLPane::keyPressed(wxKeyEvent& event) {
+    	getEngine()->key_down(event.GetKeyCode(),event.ControlDown(),event.ShiftDown(),event.AltDown());
 }
 void BasicGLPane::keyReleased(wxKeyEvent& event) {
 	getEngine()->key(event.GetKeyCode(),event.ControlDown(),event.ShiftDown(),event.AltDown());
