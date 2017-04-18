@@ -16,6 +16,7 @@ DSLAB provides an interface (the class DataEngine) from which you subclass to ge
 These functionalitites are made possible by using wxWidgets for the cross-plattform stuff and carefully implementing an interface for extending the application with varying data science applets defined by a single class.
 
 
+
 # Initial Documentation
 This is a simple autotools system. Basically, you should
 
@@ -23,7 +24,13 @@ This is a simple autotools system. Basically, you should
 make
 sudo make install
 
-and then be able to use it in your projects by adding -ldslab linker switch
+and then be able to use it in your projects by adding -ldslab linker switch. Don't forget
+to add additional libraries such as GL or GLU for your project.
+
+# Preparing on Debian
+In addition to a basic C++ development environment (g++, make, autotools, ...), this
+project uses wxWidgets, which can be installed on Debian by
+
 
 
 Cross-Compiling:
