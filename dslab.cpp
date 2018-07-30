@@ -211,7 +211,7 @@ bool MyApp::OnInit()
  
     frame->Show();
     
-    bool console = false;
+    bool console = true;
     if (!console) 
 		redirect = new wxStreamToTextRedirector(textBox);
     
