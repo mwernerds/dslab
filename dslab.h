@@ -208,6 +208,7 @@ class DataEngine
 		virtual void extendViewMenu(wxMenu *menuDataEngine){};		
 		virtual void handleMenu(int id){};
 		virtual void beforeQuit(){};
+		virtual void resize(size_t width, size_t height){};
 		virtual void render(size_t width, size_t height){};
 		//virtual void moseMoved(size_t x, size_t y)
 		virtual void mouseClick(size_t x, size_t y) {};

@@ -306,8 +306,10 @@ BasicGLPane::~BasicGLPane()
  
 void BasicGLPane::resized(wxSizeEvent& evt)
 {
-//	wxGLCanvas::OnSize(evt);
- 
+//    wxGLCanvas::OnSize(evt);
+    wxSize size = evt.GetSize();
+    
+    getEngine()->resize(size.GetWidth(), size.GetHeight());
     Refresh();
 }
  
