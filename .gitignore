@@ -1,11 +1,11 @@
-	.deps/
-	Makefile
-	autom4te.cache/
-	config.log
-	config.status
-	example
-	example-zoompan-animate
-	ortho
+.deps/
+Makefile
+autom4te.cache/
+config.log
+config.status
+example
+example-zoompan-animate
+ortho
 
 # Compiled Object files
 *.slo

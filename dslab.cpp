@@ -202,10 +202,9 @@ bool MyApp::OnInit()
     frame->SetAutoLayout(true);
  
     frame->Show();
-    
-    bool console = true;
-    if (!console) 
-		redirect = new wxStreamToTextRedirector(textBox);
+#ifndef DISABLE_GUI_CONSOLE    
+    redirect = new wxStreamToTextRedirector(textBox);
+#endif
     
    /* if (wxGetApp().argc >1)
       if(wxStrcmp(wxGetApp().argv[1],wxT("--console")) != 0)

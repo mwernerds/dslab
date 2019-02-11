@@ -1,6 +1,9 @@
 AC_PREREQ(2.57)
 AC_INIT([libdslab], [0.3], [martin@martinwerner.de])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
+#LT_INIT
+
 AM_OPTIONS_WXCONFIG
 reqwx=2.4.0
 AM_PATH_WXCONFIG($reqwx, wxWin=1)
@@ -29,6 +32,16 @@ AC_ARG_ENABLE(windows,Use this option if building for Windows,
 CXXFLAGS="$CXXFLAGS -uWinMain"
 GL_LIBS=""
 ])
+
+#
+#  This is a special Windows option
+#
+AC_ARG_ENABLE(text-console,Use this option if you want to disable the captured console (e.g., for debug),
+[
+CXXFLAGS="$CXXFLAGS -DDISABLE_GUI_CONSOLE"
+])
+
+
 
 
 WX_LIBS_OGL=`$WX_CONFIG_WITH_ARGS --gl-libs $4`
