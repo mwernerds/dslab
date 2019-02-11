@@ -20,6 +20,7 @@ class MyDataEngine :public DataEngine
 		cout << "Initialization" << endl;
 		zoompan.setMBR(0,10,0,10);
 		glEnable(GL_DEPTH_TEST);
+		
 	    wxToolBar *toolbar;
 		toolbar = new wxToolBar(getFrame(),-1);
 
@@ -33,7 +34,6 @@ class MyDataEngine :public DataEngine
 		toolbar->Realize();
 		getFrame()->SetToolBar(toolbar);
 
-		
 		
 		
 	}

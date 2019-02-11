@@ -195,15 +195,7 @@ bool MyApp::OnInit()
 		frame->CreateStatusBar();
 		frame->SetStatusText(wxT( "Welcome to DSLAB <see www.martinwerner.de for more information>!" ));
 		// Start off with the default toolbar. I expect this to be overwritten in many cases
-	    wxToolBar *toolbar;
-		toolbar = new wxToolBar(getFrame(),-1);
-		toolbar->AddSeparator();
-		toolbar->AddTool(wxID_ABOUT,wxT("About"),wxBitmap((const char *const *) &xpm_mdsg));
-		toolbar->Realize();
-		frame->SetToolBar(toolbar);
 
-		
-		
 		frame->Maximize(true);
  
     frame->SetSizer(sizer);
