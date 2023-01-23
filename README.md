@@ -21,9 +21,11 @@ These functionalitites are made possible by using wxWidgets for the cross-plattf
 
 This is a simple autotools system. Basically, you should
 
+```bash
 ./configure
 make
 sudo make install
+```
 
 and then be able to use it in your projects by adding `-ldslab` linker switch. Don't forget
 to add additional libraries such as GL or GLU for your project.
@@ -35,7 +37,7 @@ project uses wxWidgets, which can be installed on Debian by
 
 ```bash
 # install dependecies (wxWidgets & GL/GLU)
-sudo apt-get install build-essentials make libwxbase3.0-dev libwxgtk3.0-gtk3-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
+sudo apt-get install build-essential make libwxbase3.0-dev libwxgtk3.0-gtk3-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
 # may need to link wx
 sudo ln -sv /usr/include/wx-3.0/wx /usr/include/wx 
 ```
