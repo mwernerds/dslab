@@ -46,7 +46,8 @@ using namespace std;
  class dsOrthoZoomPan
  {
 	 double mbr[4];
-	 double near, far;
+   double cnear;
+   double cfar;
 	 double scale;
 	 int zoomlevel;
      size_t viewport[4];	 
@@ -57,7 +58,7 @@ using namespace std;
 	 {
 		 x = y  = zoomlevel = 0;
 		 scale = ORTHO_ZOOM_DEFAULT_SCALE;
-		 near = -10; far = 10;
+		 cnear = -10; cfar = 10;
 	 }
 	 void   setMBR(double l,double r, double t, double b){
 			mbr[0] = l;
@@ -125,8 +126,8 @@ using namespace std;
 	
 	void setClipping (double _near, double _far)
 	{
-		near = _near;
-		far = _far;
+		cnear = _near;
+		cfar = _far;
 	};
 	
 	void fixZoom(size_t x, size_t y, size_t amount)
@@ -164,7 +165,7 @@ using namespace std;
 		// project
 		glOrtho(x-view_width / 2, x+ view_width/2,
 				y-view_height/2, y+view_height/2,
-				near,far);	
+				cnear,cfar);	
 		//glOrtho(mbr[2],mbr[3],mbr[0],mbr[1],-10,10); // y x rendering
 		
 	}

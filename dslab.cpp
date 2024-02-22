@@ -1,10 +1,25 @@
 #include "dslab.h"
-#include <sys/time.h>
-#include<unistd.h>
 #include<stdlib.h>
 #include<stdint.h>
 
 
+
+#if defined(_WIN32)
+#include <chrono>
+
+int gettimeofday(struct timeval* tp, struct timezone* tzp) {
+  namespace sc = std::chrono;
+  sc::system_clock::duration d = sc::system_clock::now().time_since_epoch();
+  sc::seconds s = sc::duration_cast<sc::seconds>(d);
+  tp->tv_sec = s.count();
+  tp->tv_usec = sc::duration_cast<sc::microseconds>(d - s).count();
+
+  return 0;
+}
+#else
+#include <sys/time.h>
+#include<unistd.h>
+#endif // _WIN32
 
 
 BasicGLPane *glPane;
@@ -388,9 +403,10 @@ void BasicGLPane::writeScreenshot(std::string filename)
 {
 	wxInitAllImageHandlers();  
 	
-	wxPaintEvent evt;
+	//	wxPaintEvent evt;
 	glDrawBuffer(GL_BACK);
-	render(evt);
+	//render(evt);
+	Refresh(); // not sure it works.
 	glReadBuffer(GL_BACK);
 	GLvoid *imageData = malloc(getWidth()*getHeight()*3);		// 3 byte for RGB
 	if (imageData == NULL)
