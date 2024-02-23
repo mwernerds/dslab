@@ -1,5 +1,5 @@
 /* XPM */
-const char * xpm_mdsg[] = {
+ char const * const xpm_mdsg[] = {
 "32 32 633 2",
 "   c #744426",
 ". 	c #FF1616",

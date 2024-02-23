@@ -24,15 +24,15 @@ include(c:/vcpkg/vcpkg/scripts/buildsystems/vcpkg.cmake)
 find_package(OpenGL REQUIRED)
 find_package(wxWidgets CONFIG REQUIRED)
 
-#xpm_mdsg.cpp xpm_viewmag1.cpp xpm_viewmagm.cpp xpm_viewmagp.cpp
+#
 # example-zoompan.cpp
-add_library(dslab STATIC dslab.cpp dslab.h)
+add_library(dslab STATIC dslab.cpp dslab.h xpm_mdsg.cpp xpm_viewmag1.cpp xpm_viewmagm.cpp xpm_viewmagp.cpp)
 target_link_libraries(dslab PRIVATE wx::core wx::base wx::gl)
 target_compile_features(dslab PRIVATE cxx_std_17)
 
 # Link each target with other targets or add options, etc.
 
 # Adding something we can run - Output name matches target name
-add_executable(example-zoompan WIN32  )
+add_executable(example-zoompan WIN32  example-zoompan.cpp)
 target_link_libraries(example-zoompan PRIVATE dslab wx::core wx::base)
 target_include_directories(example-zoompan PRIVATE  ${PROJECT_SOURCE_DIR})

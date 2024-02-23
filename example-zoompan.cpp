@@ -20,19 +20,19 @@ class MyDataEngine :public DataEngine
 		cout << "Initialization" << endl;
 		zoompan.setMBR(0,10,0,10);
 		glEnable(GL_DEPTH_TEST);
-	    wxToolBar *toolbar;
+		/*wxToolBar *toolbar;
 		toolbar = new wxToolBar(getFrame(),-1);
 
-		toolbar->AddTool(MENU_ZOOMIN,wxT("Zoom In"),wxBitmap((const char *const *) &xpm_viewmagp));
-		toolbar->AddTool(MENU_ZOOMOUT,wxT("Zoom Out"),wxBitmap((const char *const *) &xpm_viewmagm));
-		toolbar->AddTool(MENU_ZOOMFIT,wxT("Zoom Fit"),wxBitmap((const char *const *) &xpm_viewmag1));
+				toolbar->AddTool(MENU_ZOOMIN,wxT("Zoom In"),wxBitmap(&xpm_viewmagp));
+		toolbar->AddTool(MENU_ZOOMOUT,wxT("Zoom Out"),wxBitmap( &xpm_viewmagm));
+		toolbar->AddTool(MENU_ZOOMFIT,wxT("Zoom Fit"),wxBitmap(&xpm_viewmag1));
 		
 		
 		toolbar->AddSeparator();
-		toolbar->AddTool(wxID_ABOUT,wxT("About"),wxBitmap((const char *const *) &xpm_mdsg));
+		toolbar->AddTool(wxID_ABOUT,wxT("About"),wxBitmap((&xpm_mdsg)));
 		toolbar->Realize();
 		getFrame()->SetToolBar(toolbar);
-
+		*/
 		
 		
 		

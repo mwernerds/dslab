@@ -6,11 +6,16 @@
 #define VISUAL_STREAMS 0
 
 /*Image ressources*/
-extern const char *xpm_mdsg;
-extern const char *xpm_viewmagp;
+
+extern char const * const xpm_mdsg;
+extern char const * const xpm_viewmagp;
+extern char const * const xpm_viewmagm;
+extern char const * const xpm_viewmag1;
+/*extern const char *xpm_mdsg;
+extern char const * const extern const char *xpm_viewmagp;
 extern const char *xpm_viewmagm;
 extern const char *xpm_viewmag1;
-
+*/
 #include "wx/wx.h"
 #include "wx/glcanvas.h"
 #include "wx/intl.h"
